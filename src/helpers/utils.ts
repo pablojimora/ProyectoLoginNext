@@ -1,4 +1,5 @@
-
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 
 
@@ -17,6 +18,27 @@ const restar =(prop1:number, prop2:number)=>{
 
 }
 
+const authenticate = (user:string, password:string) =>{
+
+
+
+    if (user == "" || password == ""){
+      alert('Debe ingresar usuario y contraseña')
+    };
+    
+
+    const foundUser = users.find((person)=>person.name === user && person.password === password);
+    if (foundUser){
+      return true
+    //   router.push('/dashboard')
+    } else {
+      return false
+    //   setPassword('');
+    //   setUser('');
+    //   router.push('/');
+    }
+}
+
 
 const users = [
     {name: 'Pablo', password: '24'},
@@ -31,6 +53,7 @@ export{
     multiplicar,
     restar, 
     users,
+    authenticate
 }
 
 

@@ -47,10 +47,7 @@ export const Dashboard = () => {
 
     return (
         <>
-            <h1 className='div'>Login</h1>
-            <div className='h2'>Ingrese su usuario y contraseña</div>
-            <input type="text" />
-            <input type="password" />
+            <h1 className='div'>Bienvenido estos son los usuarios y las contraseñas de la pagina</h1>
             {
                 users?.map((user, index) => (
                     <div key={index}>
