@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router'
-import { useState } from 'react'
+
+
 
 
 
@@ -48,12 +48,55 @@ const users = [
     {name: 'David', password: '24'},
 ]
 
+
+class UserStore {
+    
+    listUser() {
+        console.log('Se estan listando los usuarios: GET');        
+    };
+    
+    findUserByName() {
+        console.log('Se encuentra usuario por nombre po rmedio con un get(name)')
+    };
+    @addUserMetadata
+    createUser() {
+        return {name:'sdf'}
+    };
+    
+    updateUser() {
+        console.log('Se actualiza usuario')
+    };
+    
+    removeUser() {
+        console.log('Se elimina usuario')
+    }; 
+
+
+}
+
+function addUserMetadata(_target: object,_propertyKey: string, descriptor: PropertyDescriptor) {
+  const original = descriptor.value; // TypeScript ya lo ve como Function | undefined
+
+  descriptor.value = function (...args: unknown[]) {
+    // Como descriptor.value podría ser undefined, TS pide check
+    const result = original && original.apply(this, args);
+    return {
+      ...result,
+      role: "user",
+      createdAt: new Date(),
+    };
+  };
+
+  return descriptor;
+}
+
 export{
     sumar,
     multiplicar,
     restar, 
     users,
-    authenticate
+    authenticate,
+    UserStore
 }
 
 

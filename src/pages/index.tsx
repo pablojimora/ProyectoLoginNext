@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 // import Dashboard from './dashboard';
-import{ authenticate }from '../helpers/utils'
+import{ authenticate, UserStore }from '../helpers/utils'
 import {  useState } from 'react';
 // import { HtmlContext } from 'next/dist/server/route-modules/pages/vendored/contexts/entrypoints';
 // Se inicia en mayuscula cuando es un componente, es una funcion, un componente siempre retorna html
@@ -20,7 +20,13 @@ const Login = () => {
 const handleChangeUser = (e:React.ChangeEvent<HTMLInputElement>) => {
   setUser(e.target.value);
 
-} 
+}
+
+  const store = new UserStore();
+
+  const usuario = store.createUser();
+  console.log(usuario);
+
   
 
   const handleClick = () =>{
@@ -32,8 +38,6 @@ const handleChangeUser = (e:React.ChangeEvent<HTMLInputElement>) => {
       setUser('');
       setPassword('')
     }
-  console.log(password)
-
   
   }
   return (
