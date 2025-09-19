@@ -50,6 +50,8 @@ const users = [
 
 
 class UserStore {
+
+  
     
     listUser() {
         console.log('Se estan listando los usuarios: GET');        

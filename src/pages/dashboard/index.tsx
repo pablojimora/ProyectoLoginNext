@@ -1,12 +1,11 @@
-// import { useState } from 'react'
-import { sumar, multiplicar, users } from '../../helpers/utils'
-import toUpperCaseLetters, { toLowerCaseLetters } from '../../helpers/capitalizar'
-import { CC, Car } from '@/dto'
 import { useRouter } from 'next/router'
+import { userServices } from "@/services/users";
+import { useState } from "react";
 
 export const Dashboard = () => {
-
-    const router = useRouter();
+const [userlist, setUserList] = useState([]);
+  
+ const router = useRouter();
 
     console.log(router)
 
@@ -17,53 +16,63 @@ export const Dashboard = () => {
     const goToBack=()=>{
         router.back()
     }
+const handleClick = async () => {
 
-    const car1:Car ={
-        motor: 'Kumis',
-        color: 'rojo',
-        marca: 'chevrolet',
-        cc: 1211
-    }
+    
+  console.log("Hola mundo desde el front");
 
-    const {} = car1
+  const userClass = new userServices();
 
-    const a = 2;
-    const b = 10;
-    const palabra = 'Palabra'
+    //forma 1
+  const users = userClass.getUsers();
 
-    const result = sumar(a, b);
-    const result2 = multiplicar(a, b);
-    const result3 = toUpperCaseLetters(palabra);
-    const result4 = toLowerCaseLetters(palabra);
-    const cedula:CC= 47454
+  users 
+    .then((data)=> data.json())
+    .then((response) => {
+    setUserList(response.users);
+    });
+    // forma 2
+//   try {
+//     const res = await userClass.getUsers();
+//     const data = await res.json();
+//     console.log(data); // 👈 aquí ya tienes el objeto directamente
+//   } catch (error) {
+//     console.error("Error al obtener usuarios:", error);
+//   }
+};
 
-
-    console.log(result)
-    console.log(result2)
-    console.log(result3)
-    console.log(result4)
-    console.log(cedula)
-
-
-    return (
-        <>
-            <h1 className='div'>Bienvenido estos son los usuarios y las contraseñas de la pagina</h1>
-            {
-                users?.map((user, index) => (
-                    <div key={index}>
-                        <div className='div'>{user.name}</div>
-                        <div className='div'>{user.password}</div>
-
-
-                    </div>
-
-                ))
-            }
-
-            <button onClick={()=>{goToBack()}}>Regresar</button>
-
-        </>
-    )
+const btnDelete = async () => {
+    
 }
 
+  return (
+    <div>
+      <h1>Hola Mundo</h1>
+        
+      <button onClick={handleClick} >Ingresar</button> 
+
+      <div>
+        {//se ponen parentesis despues de la flecha porque vamos a retornar html
+            userlist.map((item, index)=>(
+                 // el sirve para evitar fallos en el renderizado y que quede bien pósicioanda la lista
+                <div key={index}>
+                    <div>{item.name}</div>
+                    <div>{item.age}</div>
+                </div>
+                
+            ))
+        }
+      </div>
+      <button onClick={goToBack}>Atras</button>
+
+    </div>
+  )
+}
+   
+
 export default Dashboard
+
+
+
+
+
