@@ -1,3 +1,9 @@
+export interface User {
+  id: number;
+  name: string;
+  age: number;
+}
+
 class userServices {
     url:string='http://localhost:3000'
 
@@ -5,6 +11,7 @@ class userServices {
 
     // }
 
+    
     async getUsers(){
         const result = await fetch(`${this.url}/api/users`);
     
@@ -18,22 +25,36 @@ class userServices {
     }
 
     async postUsers() {
-    const result = await fetch(`${this.url}/api/users`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json", 
-    },
-    body: JSON.stringify({
-      name: "Nuevo Usuario",
-      age: 25,
-    }),
-  });
+        const result = await fetch(`${this.url}/api/users`, {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json", 
+        },
+        body: JSON.stringify({
+        name: "Nuevo Usuario",
+        age: 25,
+        }),
+    });
 
-  return result;
-}
+        return result;
+    };
 
+    async putUsers(id: number, data: Partial<User>): Promise<User> {
+    const result = await fetch(`${this.url}/api/users/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
 
+    if (!result.ok) {
+      throw new Error("Error al actualizar el usuario");
+    }
 
+    return result.json(); 
+
+     }
 }
 
 export {userServices}
