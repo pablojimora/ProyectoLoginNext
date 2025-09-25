@@ -1,3 +1,4 @@
+import { Bounce, toast } from "react-toastify"
 
 
 
@@ -91,6 +92,38 @@ function addUserMetadata(_target: object,_propertyKey: string, descriptor: Prope
 
   return descriptor;
 }
+
+
+export const notification = (text: string, type: 'error' | 'success', time?: number) => {
+    // console.log("EL texto es " , text);
+    // console.log("EL tipo es " , type);
+    if (type === 'success') {
+        toast.success(`${text}`, {
+            position: "bottom-right",
+            autoClose: time || 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+        });
+    }
+        if (type === 'error') {
+            toast.error(`${text}`, {
+                position: "top-right",
+                autoClose: time || 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+            });
+        }
+    }
 
 export{
     sumar,

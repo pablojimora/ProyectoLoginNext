@@ -41,9 +41,6 @@ const handleClick = async () => {
 //   }
 };
 
-const btnDelete = async () => {
-    
-}
 
   return (
     <div>
@@ -56,8 +53,8 @@ const btnDelete = async () => {
             userlist.map((item, index)=>(
                  // el sirve para evitar fallos en el renderizado y que quede bien pósicioanda la lista
                 <div key={index}>
-                    <div>{item.name}</div>
-                    <div>{item.age}</div>
+                    {/* <div>{item.name}</div>
+                    <div>{item.age}</div> */}
                 </div>
                 
             ))

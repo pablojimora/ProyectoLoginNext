@@ -32,7 +32,7 @@ const handleChangeUser = (e:React.ChangeEvent<HTMLInputElement>) => {
   const handleClick = () =>{
     const isLogin =  authenticate(user, password);
     if (isLogin) {
-      router.push('/dashboard')
+      router.push('/infoDashboard')
     } else {
       alert('Usuario o contraseña incorrectos');
       setUser('');
