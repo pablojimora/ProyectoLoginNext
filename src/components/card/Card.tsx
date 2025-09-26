@@ -2,7 +2,7 @@ import { MyBadge, MiBadgeProps } from "../badge/Badge";
 import Image from 'next/image'
 
 
-interface MyCardProps extends MiBadgeProps{
+ export interface MyCardProps extends MiBadgeProps{
     titleCard: string;
     imageUrl?:string;
     type: 'green' | 'white' | 'black';

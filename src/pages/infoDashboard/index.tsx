@@ -4,18 +4,96 @@ import { notification } from '@/helpers/utils';
 import { ToastContainer } from 'react-toastify';
 import { MyBadge } from '@/components/badge/Badge';
 import { MyCard } from '@/components/card/Card';
+import { MyCardProps } from '@/components/card/Card'; 
 
 export const infoDashboard = () => {
+
+
+    const cards: MyCardProps[] = [
+        {
+            type:"green",
+            titleCard:"Carta 1",
+            footer: 'sd',
+            label:"Online",
+            status:"success",
+            icon:'✅',
+            titleBadge:"El servidor está funcionando sin problemas"
+        },
+        {
+            type:"white",
+            titleCard:"Carta 2",
+            footer: 'sd',
+            label:"Online",
+            status:"warning",
+            icon:'✅',
+            titleBadge:"El servidor no está funcionando "
+        },
+        {
+            type:"black",
+            titleCard:"Carta 3",
+            footer: 'sd',
+            label:"Online",
+            status:"info",
+            icon:'✅',
+            titleBadge:"El servidor está online"
+        },
+        {
+            type:"green",
+            titleCard:"Carta 4",
+            footer: 'sd',
+            label:"Online",
+            status:"error",
+            icon:'✅',
+            titleBadge:"El servidor tiene un error"
+        },
+        {
+            type:"white",
+            titleCard:"Carta 5",
+            footer: 'sd',
+            label:"Online",
+            status:"warning",
+            icon:'✅',
+            titleBadge:"El servidor no está funcionando "
+        },
+        {
+            type:"black",
+            titleCard:"Carta 6",
+            footer: 'sd',
+            label:"Online",
+            status:"info",
+            icon:'✅',
+            titleBadge:"El servidor está online"
+        },
+    ]
 
     const prueba = () => {
         console.log('hola')
     }
     return (
         <>
+            <div className='contenedor'>
+                {//se ponen parentesis despues de la flecha porque vamos a retornar html
+                cards.map((item, index)=>(
+                    // el sirve para evitar fallos en el renderizado y que quede bien pósicioanda la lista
+                    <div key={index}>
+                        <MyCard
+                        type={item.type}
+                        titleCard={item.titleCard}
+                        footer={item.footer}
+                        label={item.label}
+                        status={item.status}
+                        icon={item.icon}
+                        titleBadge={item.titleBadge}
+                    />
+            </div>
+                
+            ))
+        }
+            </div>
             <MyCard
                 type="green"
                 titleCard="Servidor Activo"
-                footer={<button className="components__button primary">Acceder</button>}
+                footer={<MiButton text={'Hola'}/>}
                 label="Online"
                 status="success"
                 icon={<span>✅</span>}
