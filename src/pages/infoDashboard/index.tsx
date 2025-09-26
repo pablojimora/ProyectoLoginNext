@@ -9,6 +9,10 @@ import { MyCardProps } from '@/components/card/Card';
 export const infoDashboard = () => {
 
 
+    const eliminarALGO = (id:string) =>{
+        console.log(id)
+    }
+
     const cards: MyCardProps[] = [
         {
             type:"green",
@@ -17,7 +21,9 @@ export const infoDashboard = () => {
             label:"Online",
             status:"success",
             icon:'✅',
-            titleBadge:"El servidor está funcionando sin problemas"
+            titleBadge:"El servidor está funcionando sin problemas",
+            textButton:'Eliminar'
+
         },
         {
             type:"white",
@@ -26,7 +32,8 @@ export const infoDashboard = () => {
             label:"Online",
             status:"warning",
             icon:'✅',
-            titleBadge:"El servidor no está funcionando "
+            titleBadge:"El servidor no está funcionando ",
+            textButton:'Eliminar'
         },
         {
             type:"black",
@@ -35,7 +42,9 @@ export const infoDashboard = () => {
             label:"Online",
             status:"info",
             icon:'✅',
-            titleBadge:"El servidor está online"
+            titleBadge:"El servidor está online",
+            textButton:'Eliminar'
+
         },
         {
             type:"green",
@@ -44,7 +53,9 @@ export const infoDashboard = () => {
             label:"Online",
             status:"error",
             icon:'✅',
-            titleBadge:"El servidor tiene un error"
+            titleBadge:"El servidor tiene un error",
+            textButton:'Eliminar'
+
         },
         {
             type:"white",
@@ -53,7 +64,9 @@ export const infoDashboard = () => {
             label:"Online",
             status:"warning",
             icon:'✅',
-            titleBadge:"El servidor no está funcionando "
+            titleBadge:"El servidor no está funcionando ",
+            textButton:'Eliminar'
+
         },
         {
             type:"black",
@@ -62,7 +75,9 @@ export const infoDashboard = () => {
             label:"Online",
             status:"info",
             icon:'✅',
-            titleBadge:"El servidor está online"
+            titleBadge:"El servidor está online",
+            textButton:'Eliminar'
+
         },
     ]
 
@@ -84,13 +99,15 @@ export const infoDashboard = () => {
                         status={item.status}
                         icon={item.icon}
                         titleBadge={item.titleBadge}
+                        textButton={item.textButton}
+                        click={()=>eliminarALGO(item.titleCard)}
                     />
             </div>
                 
             ))
         }
             </div>
-            <MyCard
+            {/* <MyCard
                 type="green"
                 titleCard="Servidor Activo"
                 footer={<MiButton text={'Hola'}/>}
@@ -126,11 +143,11 @@ export const infoDashboard = () => {
                 text="Ambos Iconos"
                 leftIcon={<span>⚠️</span>}
                 rightIcon={<span>❌</span>}
-                click={prueba}
+                click={prueba} */}
 
-            // click={()=>notification("Cuidado, ¿puedes manjear dos iconos? jaj", "error")}
-            />
-            <MiButton
+            {/* // click={()=>notification("Cuidado, ¿puedes manjear dos iconos? jaj", "error")}
+            /> */}
+            {/* <MiButton
                 size='lg'
                 variant="primary"
                 text="Ambos Iconos"
@@ -148,7 +165,7 @@ export const infoDashboard = () => {
                 rightIcon={<span>❌</span>}
                 click={() => notification("Cuidado, ¿puedes manjear dos iconos? jaj", "error")}
                 disabled
-            />
+            /> */}
             <MyBadge
                 label="Operación exitosa"
                 status="success"

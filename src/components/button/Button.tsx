@@ -1,7 +1,7 @@
 // import { JSX } from "react";
 
 
-interface MiButtonProps {
+export interface MiButtonProps {
     variant?: "primary" | "secondary" | "danger";
     size?: "sm" | "md" | "lg";
     disabled?: boolean;
@@ -9,10 +9,10 @@ interface MiButtonProps {
     click?: ()=>void;
     leftIcon?: React.ReactNode;
     rightIcon?: React.ReactNode;
-    text: string
+    textButton: string
 }
 
-export const MiButton = ({variant, size, disabled= false, loading=false, click,leftIcon, rightIcon, text}:MiButtonProps) => {
+export const MiButton = ({variant, size, disabled= false, loading=false, click,leftIcon, rightIcon, textButton}:MiButtonProps) => {
 
     return (
         <button
@@ -28,7 +28,7 @@ export const MiButton = ({variant, size, disabled= false, loading=false, click,l
         disabled= {disabled || loading}
         onClick={click}
         >
-           {leftIcon} {loading? 'Cargando...' : text} {rightIcon} 
+           {leftIcon} {loading? 'Cargando...' : textButton} {rightIcon} 
         </button>
     )
 }

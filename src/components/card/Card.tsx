@@ -1,15 +1,18 @@
 import { MyBadge, MiBadgeProps } from "../badge/Badge";
+import { MiButton, MiButtonProps } from "../button/Button";
+
 import Image from 'next/image'
 
 
- export interface MyCardProps extends MiBadgeProps{
+ export interface MyCardProps extends MiBadgeProps, MiButtonProps {
     titleCard: string;
     imageUrl?:string;
     type: 'green' | 'white' | 'black';
     footer?: React.ReactNode;
 }
 
- export const MyCard = ({titleCard,type,footer, label, status, icon, titleBadge}:MyCardProps) =>{
+
+ export const MyCard = ({titleCard,type,footer, label, status, icon, titleBadge, textButton, click}:MyCardProps) =>{
     return(
         <>
             <div className={`card card--${type}`}>
@@ -25,6 +28,10 @@ import Image from 'next/image'
                     height={50}
                     alt="Picture of the author"
                     />
+                <MiButton
+                    textButton={textButton}
+                    click={click}
+                />
                 {footer}
             </div>
         </>
