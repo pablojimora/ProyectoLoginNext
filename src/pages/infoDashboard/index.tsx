@@ -5,9 +5,15 @@ import { ToastContainer } from 'react-toastify';
 import { MyBadge } from '@/components/badge/Badge';
 import { MyCard } from '@/components/card/Card';
 import { MyCardProps } from '@/components/card/Card'; 
+import { getProperties } from '@/services/properties';
 
 export const infoDashboard = () => {
 
+
+    const handleCLick = async ()=>{
+        const response = await getProperties();
+        console.log(response)
+    }
 
     const eliminarALGO = (id:string) =>{
         console.log(id)
@@ -86,6 +92,14 @@ export const infoDashboard = () => {
     }
     return (
         <>
+             <MiButton
+                size='lg'
+                variant="danger"
+                textButton='Prueba'
+                leftIcon={<span>⚠️</span>}
+                rightIcon={<span>❌</span>}
+                click={handleCLick}
+            />
             <div className='contenedor'>
                 {//se ponen parentesis despues de la flecha porque vamos a retornar html
                 cards.map((item, index)=>(
