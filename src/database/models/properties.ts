@@ -21,7 +21,7 @@ const propertiesSchema = new Schema({
 let Properties: Model<any>;
 try {
     // Intenta compilar el modelo solo una vez
-    Properties = model("properties");
+    Properties = model("properties"); // es el nombre de la entidad donde esta apuntando al base de datos
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 } catch (error) {
     // Si el modelo ya está compilado, úsalo

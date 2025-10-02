@@ -1,6 +1,7 @@
 @import './components/buttons.css';
 @import './components/badge.css';
 @import './components/cards.css';
+@import './components/create.css';
 
 
 .contenedor{
@@ -8,6 +9,19 @@
   grid-template-columns: repeat(3, 500px);
   margin-left: 100px;
   row-gap: 20px;
+}
+.img{
+  width: 50%;
+  border-radius: 0.5rem;
+  object-fit: cover;
+}
+
+.inputs{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 150px;
+  margin-top: 20px;
 }
 /* @import "tailwindcss";
 

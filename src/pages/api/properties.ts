@@ -5,27 +5,30 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 
 
-interface Property {
+export interface Property {
     _id: string;
     name: string;
     value: number;
     img?: string;
 }
 
-type PropertiesResponse = | { ok: true; data: Property[] } | { ok: false; error: string };
+export type PropertiesResponse = | { ok: true; data: Property[] } | { ok: false; error: string };
 
 export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<PropertiesResponse>,
 ) {
     try {
+        
+        dbConnection();
+
         if (req.method === 'GET') {
-            await dbConnection()
+            
             const data = await Properties.find()
             res.status(200).json({ ok: true, data: data as Property[] });
         }
         else if (req.method === 'POST') {
-            await dbConnection()
+            
             const { name, value, img } = req.body
             const newProperty = new Properties({
                 name,
@@ -38,7 +41,7 @@ export default async function handler(
 
             res.status(200).json({ ok: true, data: [savedProperty] as Property[] });
         } else if (req.method === "PUT") {
-            dbConnection();
+            
             const { id } = req.query;
             const { name, value, img } = req.body;
             const updated = await Properties.findByIdAndUpdate(
@@ -53,7 +56,7 @@ export default async function handler(
             res.status(200).json({ ok: true, data: [updated] });
             return;
         } else if (req.method === "DELETE") {
-            dbConnection();
+            
             const { id } = req.query;
             const deleted = await Properties.findByIdAndDelete(id as string);
             if (!deleted) {

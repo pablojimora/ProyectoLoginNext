@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
 // next.config.js
 module.exports = {
   images: {
+    domains: ["images.unsplash.com"],
     remotePatterns: [
       {
         protocol: "https",
