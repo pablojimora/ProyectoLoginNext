@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MiButton } from '@/components/button/Button';
 import { notification } from '@/helpers/utils';
 import { ToastContainer } from 'react-toastify';
@@ -7,12 +7,16 @@ import { MyCard } from '@/components/card/Card';
 import { MyCardProps } from '@/components/card/Card'; 
 import { getProperties } from '@/services/properties';
 
-export const infoDashboard = () => {
+export const InfoDashboard = () => {
 
+
+    const [properties, setProperties] = useState([]);
 
     const handleCLick = async ()=>{
         const response = await getProperties();
-        console.log(response)
+        setProperties(response);
+
+
     }
 
     const eliminarALGO = (id:string) =>{
@@ -221,4 +225,4 @@ export const infoDashboard = () => {
 }
 
 
-export default infoDashboard;
+export default InfoDashboard;
