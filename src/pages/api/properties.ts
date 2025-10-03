@@ -23,7 +23,16 @@ export default async function handler(
         dbConnection();
 
         if (req.method === 'GET') {
-            
+            const {id} = req.query;
+            if(id){
+                const property = await Properties.findById(id as string);
+                if(!property){
+                    res.status(404).json({ok:false, error: 'No encontrado'});
+                    return;
+                }
+                res.status(200).json({ok:true, data: [property] as Property[]});
+                return;
+            }
             const data = await Properties.find()
             res.status(200).json({ ok: true, data: data as Property[] });
         }
