@@ -9,10 +9,12 @@ import Image from 'next/image'
     imageUrl?:string;
     type: 'green' | 'white' | 'black';
     footer?: React.ReactNode;
+    function1?: ()=>void;
+    function2?: ()=>void;
 }
 
 
- export const MyCard = ({titleCard,type,footer, label, status, icon, titleBadge, textButton, click, imageUrl=''}:MyCardProps) =>{
+ export const MyCard = ({titleCard,type,footer, label, status, icon, titleBadge, imageUrl='', variant, size, function1, function2}:MyCardProps) =>{
     return(
         <>
             <div className={`card card--${type}`}>
@@ -29,9 +31,18 @@ import Image from 'next/image'
                     alt="Picture of the author"
                     />
                 <MiButton
-                    textButton={textButton}
-                    click={click}
+                    textButton='Editar'
+                    click={function1}
+                    variant={variant}
+                    size={size}
                 />
+                <MiButton
+                    textButton='Eliminar'
+                    click={function2}
+                    variant={variant}
+                    size={size}
+                />
+                
                 {footer}
             </div>
         </>

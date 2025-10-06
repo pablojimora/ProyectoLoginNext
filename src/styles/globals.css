@@ -1,8 +1,10 @@
+@import "tailwindcss";
 @import './components/buttons.css';
 @import './components/badge.css';
 @import './components/cards.css';
 @import './components/create.css';
 @import './components/login.css';
+
 
 .contenedor{
   display: grid;
@@ -15,17 +17,7 @@
   border-radius: 0.5rem;
   object-fit: cover;
 }
-
-.inputs{
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 150px;
-  margin-top: 20px;
-}
-/* @import "tailwindcss";
-
-:root {
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -52,4 +44,4 @@ body {
 input{
   border: 1px;
   border-color: #0a0a0a;
-} */
+} */ 

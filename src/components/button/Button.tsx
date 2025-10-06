@@ -9,7 +9,7 @@ export interface MiButtonProps {
     click?: ()=>void;
     leftIcon?: React.ReactNode;
     rightIcon?: React.ReactNode;
-    textButton: string
+    textButton?: string
 }
 
 export const MiButton = ({variant, size, disabled= false, loading=false, click,leftIcon, rightIcon, textButton}:MiButtonProps) => {

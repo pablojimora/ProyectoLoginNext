@@ -6,16 +6,16 @@ import { MyBadge } from '@/components/badge/Badge';
 import { MyCard } from '@/components/card/Card';
 import { MyCardProps } from '@/components/card/Card';
 import { createProperties, getProperties } from '@/services/properties';
-import Property, {PropertiesResponse} from '../api/properties'
+// import Property, {PropertiesResponse} from '../api/properties'
 
 
 export const InfoDashboard = () => {
 
 
 
-interface DataResponse {
-  ok: boolean;
-}
+// interface DataResponse {
+//   ok: boolean;
+// }
 
 
     const [dataProperties, setDataProperties] = useState({});
@@ -173,7 +173,7 @@ interface DataResponse {
                 }
             </div>
             {/* aca estamos viendo que el ok del array retorna true,entonces si es true va a ejectutar ese html, por ende va a esperar a validar eso primero antes de mapear */}
-            {dataProperties.ok && (
+            {/* {dataProperties.ok && (
                 <div className='contenedor'>
                 {dataProperties.data.map((property)=>(
                     <div key= {property._id}>
@@ -183,7 +183,7 @@ interface DataResponse {
                     </div>
                 ))}
             </div>
-            )}
+            )} */}
             {/* <MyCard
                 type="green"
                 titleCard="Servidor Activo"
