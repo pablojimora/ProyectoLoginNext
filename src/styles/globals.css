@@ -2,7 +2,7 @@
 @import './components/badge.css';
 @import './components/cards.css';
 @import './components/create.css';
-
+@import './components/login.css';
 
 .contenedor{
   display: grid;

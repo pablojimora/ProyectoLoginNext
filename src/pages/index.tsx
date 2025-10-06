@@ -41,22 +41,35 @@ const handleChangeUser = (e:React.ChangeEvent<HTMLInputElement>) => {
   
   }
   return (
-    <div>
-      <h1 className="h1">Mi app</h1>
+  <div className="login-container">
+    <h1 className="title">Next App</h1>
+    <h3 className="subtitle">Ingresa usuario y contraseña</h3>
 
-      <h3> Ingresa usuario y contraseña </h3>
-      
-
-      <label >Ingresa tu usuario    </label>
-      {/* cada vez qeu haga un cambio va a llamar la funcion handleCHageUSer */}
-      <input  value={user} onChange={handleChangeUser} type="text"/>
-      <label>Ingresa tu contraseña</label>
-      <input onChange={handlePasswordUser} type="password"/>
-
-      <button onClick={handleClick}>Ingresar</button> 
-
+    <div className="form-group">
+      <label>Usuario: </label>
+      <input
+        value={user}
+        onChange={handleChangeUser}
+        type="text"
+        placeholder="Tu usuario"
+      />
     </div>
-  )
+
+    <div className="form-group">
+      <label>Contraseña: </label>
+      <input
+        value={password}
+        onChange={handlePasswordUser}
+        type="password"
+        placeholder="Tu contraseña"
+      />
+    </div>
+
+    <button className="btn" onClick={handleClick}>
+      Ingresar
+    </button>
+  </div>
+);
 }
 
 export default Login
