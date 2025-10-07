@@ -6,7 +6,6 @@ import { MyCard } from '@/components/card/Card';
 import { createProperties, deleteProperties, getProperties, getPropertyById, updateProperties } from '@/services/properties';
 import { notification } from '@/helpers/utils';
 import { dataProperties } from '@/dto';
-import { notDeepStrictEqual } from 'assert';
 
 
 
