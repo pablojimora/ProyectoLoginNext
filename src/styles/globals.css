@@ -4,7 +4,10 @@
 @import './components/cards.css';
 @import './components/create.css';
 @import './components/login.css';
-
+@import './components/modal.css';
+@plugin './hero.ts';
+@source '../../node_modules/@heroui/theme/dist/**/.{js,ts,jsx,tsx}';
+@custom-variant dark (&:is(.dark *));
 
 
 .contenedor{

@@ -1,9 +1,14 @@
 import { useRouter } from 'next/router'
 import { userServices } from "@/services/users";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { MyContext } from '@/context/Context';
+import { Switch } from '@heroui/react';
 
 export const Dashboard = () => {
 const [userlist, setUserList] = useState([]);
+
+  const {userLogged, isSelected, setIsSelected} = useContext(MyContext);
+
   
  const router = useRouter();
 
@@ -44,7 +49,10 @@ const handleClick = async () => {
 
   return (
     <div>
+
       <h1>Hola Mundo</h1>
+
+      <div>El usuario {userLogged?.name} esta logueado</div>
         
       <button onClick={handleClick} >Ingresar</button> 
 
@@ -62,6 +70,9 @@ const handleClick = async () => {
       </div>
       <button onClick={goToBack}>Atras</button>
 
+    <Switch isSelected={isSelected} onValueChange={setIsSelected}>
+              Airplane mode
+    </Switch>
     </div>
   )
 }

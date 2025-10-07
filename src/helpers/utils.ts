@@ -4,9 +4,12 @@ import { Bounce, toast } from "react-toastify"
 
 
 
-const sumar =(prop1:number, prop2:number)=>{
-    return prop1 + prop2
+export const sum=(a:number, b:number)=> a+b;
 
+export const isEven = (n:number) => n%2 === 0;
+
+export const calculateIVA = (value:number) => {
+    return value * 0.19
 }
 
 const multiplicar =(prop1:number, prop2:number)=>{
@@ -126,7 +129,6 @@ export const notification = (text: string, type: 'error' | 'success', time?: num
     }
 
 export{
-    sumar,
     multiplicar,
     restar, 
     users,
