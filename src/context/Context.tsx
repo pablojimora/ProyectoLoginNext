@@ -12,6 +12,8 @@ export type contextProps = {
     setUserLogged?: (userLogged: UserLog) => void;
     isSelected?: boolean;
     setIsSelected?: (isSelected: boolean) => void;
+    visibleForm?: boolean ;
+    setVisibleForm:(visibleForm:boolean )=> void
 }
 
 

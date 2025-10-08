@@ -3,11 +3,13 @@ import { userServices } from "@/services/users";
 import { useContext, useState } from "react";
 import { MyContext } from '@/context/Context';
 import { Switch } from '@heroui/react';
+import FormularioUsuario from '@/components/Formulario/FormControl';
+import { MiButton } from '@/components/button/Button';
 
 export const Dashboard = () => {
 const [userlist, setUserList] = useState([]);
 
-  const {userLogged, isSelected, setIsSelected} = useContext(MyContext);
+  const {userLogged, isSelected, setIsSelected, visibleForm, setVisibleForm} = useContext(MyContext);
 
   
  const router = useRouter();
@@ -20,6 +22,10 @@ const [userlist, setUserList] = useState([]);
 
     const goToBack=()=>{
         router.back()
+    }
+
+    const handleForm = () =>{
+      setVisibleForm(!visibleForm)
     }
 const handleClick = async () => {
 
@@ -73,6 +79,16 @@ const handleClick = async () => {
     <Switch isSelected={isSelected} onValueChange={setIsSelected}>
               Airplane mode
     </Switch>
+    <MiButton
+    textButton='mostrar fomrulario'
+    size='lg'
+    click={handleForm}/>
+
+    
+
+    {visibleForm && (
+      <FormularioUsuario/>  
+    )}
     </div>
   )
 }
