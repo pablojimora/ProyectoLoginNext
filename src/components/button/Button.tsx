@@ -9,10 +9,12 @@ export interface MiButtonProps {
     click?: ()=>void;
     leftIcon?: React.ReactNode;
     rightIcon?: React.ReactNode;
-    textButton?: string
+    textButton?: string;
+    typeButton?: "submit" | "reset" | "button" | undefined;
+
 }
 
-export const MiButton = ({variant, size, disabled= false, loading=false, click,leftIcon, rightIcon, textButton}:MiButtonProps) => {
+export const MiButton = ({variant, size, disabled= false, loading=false, click,leftIcon, rightIcon, textButton, typeButton}:MiButtonProps) => {
 
     return (
         <button
@@ -27,6 +29,7 @@ export const MiButton = ({variant, size, disabled= false, loading=false, click,l
   }
         disabled= {disabled || loading}
         onClick={click}
+        type={typeButton}
         >
            {leftIcon} {loading? 'Cargando...' : textButton} {rightIcon} 
         </button>

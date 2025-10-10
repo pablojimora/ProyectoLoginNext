@@ -2,6 +2,7 @@ import { MyContext } from '@/context/Context';
 import React, {useContext, useState} from 'react'
 import {Form} from "@heroui/form";
 import { Button, Input } from '@heroui/react';
+import { MiButton } from '../button/Button';
 
 
 interface FormProps {
@@ -77,19 +78,19 @@ const FormularioUsuario= () => {
         return (
             <Form onSubmit={handleSubmit} className="w-full max-w-xs flex flex-col gap-4">
                 <div>
-                    <Input label='Nombre' type="text" name="nombre" value={formData.nombre} onChange={handleChange} required />
+                    <Input label='Nombre' type="text" name="nombre" value={formData.nombre} onChange={handleChange} isRequired />
                 </div>
                 <div>
-                    <Input label='Apellido' type="text" name="apellido" value={formData.apellido} onChange={handleChange} required/>
+                    <Input label='Apellido' type="text" name="apellido" value={formData.apellido} onChange={handleChange} isRequired/>
                 </div>
                 <div>
-                    <Input label='Edad' type="text" name="edad" value={`${formData.edad}`} onChange={handleChange} required/>
+                    <Input label='Edad' type="text" name="edad" value={`${formData.edad}`} onChange={handleChange} isRequired/>
                 </div>
                 <div>
-                    <Input label='Email' type="text" name="email" value={formData.email} onChange={handleChange} required/>
+                    <Input label='Email' type="text" name="email" value={formData.email} onChange={handleChange} isRequired/>
                 </div>
                 <div>
-                    <Input label='Teléfono' type="text" name="telefono" value={formData.telefono} onChange={handleChange} required/>
+                    <Input label='Teléfono' type="text" name="telefono" value={formData.telefono} onChange={handleChange} isRequired/>
                 </div>
                 <div>
                     <Input label='Codigo Postal' type="text" name="codigoPostal" value={formData.codigoPostal} onChange={handleChange}/>
@@ -107,7 +108,11 @@ const FormularioUsuario= () => {
                     <Input label='Profesión' type="text" name="profesion" value={formData.profesion} onChange={handleChange} />
                 </div>
 
-                <Button type='submit'>Enviar</Button>
+                <MiButton
+                typeButton='submit'
+                textButton='Enviar'
+                variant='primary'
+                size='md'/>
                 {errors.length>0 && (
                     <ul>
                         {errors.map((error,index) => (
