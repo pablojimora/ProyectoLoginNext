@@ -7,15 +7,18 @@ export interface ModalProps {
     onClose: () => void;
     onConfirm: () => void;
     title: string;
+    children?:React.ReactNode;
 }
-export const Modal = ({isOpen, onClose, onConfirm, title}:ModalProps) => {
+export const Modal = ({isOpen, onClose, onConfirm, title, children}:ModalProps) => {
   return (
     <div>
         {isOpen && (
             <div className="modal-overlay">
                 <div className="modal-content">
                     <h2>{title}</h2>
-                    <p>¿Estás seguro de que deseas continuar?</p>
+
+                        {children}
+
                     <div className="modal-actions">
                         <MiButton
                             textButton='Cancelar'

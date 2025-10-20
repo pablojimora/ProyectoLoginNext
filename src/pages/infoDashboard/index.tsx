@@ -6,6 +6,7 @@ import { MyCard } from '@/components/card/Card';
 import { createProperties, deleteProperties, getProperties, getPropertyById, updateProperties } from '@/services/properties';
 import { notification } from '@/helpers/utils';
 import { dataProperties } from '@/dto';
+import { Modal } from '@/components/modal/Modal';
 
 
 
@@ -87,6 +88,14 @@ export const InfoDashboard = () => {
         setIdEditando(null);
     };
 
+    const handleClose=()=>{
+        console.log('close')
+    }
+    const handleSaveModal=()=>{
+        console.log('save')
+    }
+
+
     return (
         <>
             {/* con este div realizo la creacion de registros conectado al post  */}
@@ -120,8 +129,28 @@ export const InfoDashboard = () => {
 
                         </div>
                     ))}
+                    
                 </div>
             )}
+            
+            {/* <MyCard
+            titleCard='dsd'
+            type='green'
+            label='dsds' // de esta forma convierto el valor a un string ya que el label espera string y el value es number
+            variant='primary'
+            size='sm' >
+                <MiButton
+                textButton='Hola'/>
+            </MyCard> */}
+            <Modal
+            title='Modal de prueba'
+            onClose={handleClose}
+            isOpen={true}
+            onConfirm={handleSaveModal}
+            
+            >
+                <div>Contenido del children</div>
+            </Modal>
 
 
             <ToastContainer />

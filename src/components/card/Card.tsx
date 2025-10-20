@@ -11,10 +11,11 @@ import Image from 'next/image'
     footer?: React.ReactNode;
     function1?: ()=>void;
     function2?: ()=>void;
+    children?: React.ReactNode;
 }
 
 
- export const MyCard = ({titleCard,type,footer, label, status, icon, titleBadge, imageUrl='', variant, size, function1, function2}:MyCardProps) =>{
+ export const MyCard = ({titleCard,type,footer, label, status, icon, titleBadge, imageUrl='', variant, size, function1, function2, children}:MyCardProps) =>{
     return(
         <>
             <div className={`card card--${type}`}>
@@ -43,6 +44,9 @@ import Image from 'next/image'
                     size={size}
                 />
                 
+            <div>
+                {children}
+            </div>
                 {footer}
             </div>
         </>
