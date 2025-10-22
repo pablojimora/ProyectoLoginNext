@@ -1,41 +1,43 @@
-import React, { useEffect, useState } from 'react'
-import { MiButton } from '@/components/button/Button';
+import React, { useEffect, useState } from "react";
+import { MiButton } from "@/components/button/Button";
 // import { notification } from '@/helpers/utils';
-import { ToastContainer } from 'react-toastify';
-import { MyCard } from '@/components/card/Card';
-import { createProperties, deleteProperties, getProperties, getPropertyById, updateProperties } from '@/services/properties';
-import { notification } from '@/helpers/utils';
-import { dataProperties } from '@/dto';
-
-
-
-
+import { ToastContainer } from "react-toastify";
+import { MyCard } from "@/components/card/Card";
+import {
+    createProperties,
+    deleteProperties,
+    getProperties,
+    getPropertyById,
+    updateProperties,
+} from "@/services/properties";
+import { notification } from "@/helpers/utils";
+import { dataProperties } from "@/dto";
+import { Modal } from "@/components/modal/Modal";
+import { colgroup } from "framer-motion/client";
 
 export const InfoDashboard = () => {
-
     const [dataProperties, setDataProperties] = useState({} as dataProperties); // de esta forma se tipa lo que voy a guardar en dataProperties
     const [dataProperty, setDataProperty] = useState({} as dataProperties); // de esta forma se tipa lo que voy a guardar en dataProperties
 
-    const [nameInput, setnameInput] = useState('');
+    const [nameInput, setnameInput] = useState("");
     const [valueInput, setvalueInput] = useState(0);
-    const [imgInput, setimgInput] = useState('');
+    const [imgInput, setimgInput] = useState("");
     const [modoEdicion, setModoEdicion] = useState(false);
     const [idEditando, setIdEditando] = useState<string | null>(null);
-    
-
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     console.log(dataProperties);
     console.log(dataProperty);
 
-
-    // al meterlo en el useEffect hace que se realice a la hora de cargar la pagina 
+    // al meterlo en el useEffect hace que se realice a la hora de cargar la pagina
     useEffect(() => {
         const fetchData = async () => {
             const response = await getProperties();
             setDataProperties(response);
-        }
-        fetchData()
-    }, [])
+            console.log(response);
+        };
+        fetchData();
+    }, []);
 
     const editarAlgo = (id: string) => {
         const fetchData = async () => {
@@ -47,18 +49,16 @@ export const InfoDashboard = () => {
                 setnameInput(property.name || "");
                 setvalueInput(property.value ?? 0);
                 setimgInput(property.img || "");
-                setModoEdicion(true);     // 🔹 activamos modo edición
-                setIdEditando(id);        // 🔹 guardamos el id que estamos editando
+                setModoEdicion(true); // 🔹 activamos modo edición
+                setIdEditando(id); // 🔹 guardamos el id que estamos editando
             }
-        }
-        fetchData()
-
-    }
+        };
+        fetchData();
+    };
 
     const eliminarAlgo = (id: string) => {
-
         deleteProperties(id);
-    }
+    };
 
     const handleSave = async () => {
         if (modoEdicion && idEditando) {
@@ -68,7 +68,7 @@ export const InfoDashboard = () => {
                 value: valueInput,
                 img: imgInput,
             });
-            notification('Registro actualizado con éxito', 'success');
+            notification("Registro actualizado con éxito", "success");
         } else {
             // 🔹 Si no → POST
             await createProperties({
@@ -76,58 +76,97 @@ export const InfoDashboard = () => {
                 value: valueInput,
                 img: imgInput,
             });
-            notification('Registro creado con éxito', 'success');
+            notification("Registro creado con éxito", "success");
         }
 
         // 🔹 Reiniciamos formulario
-        setnameInput('');
+        setnameInput("");
         setvalueInput(0);
-        setimgInput('');
+        setimgInput("");
         setModoEdicion(false);
         setIdEditando(null);
     };
+    const handleOpen = () => {
+        setModalIsOpen(true);
+    };
 
+    const handleClose = () => {
+        setModalIsOpen(false);
+    };
+    const handleConfirm = () =>{
+        notification('Se guarda dato con exito', 'success')
+    }
     return (
         <>
             {/* con este div realizo la creacion de registros conectado al post  */}
-            <div className='inputs'>
+            <div className="inputs">
                 <h1>Crear un registro</h1>
-                <input placeholder='Nombre' value={nameInput} id='name' onChange={(e) => { setnameInput(e.target.value) }} />
-                <input placeholder='Número' value={valueInput} type='number' onChange={(e) => { setvalueInput(parseFloat(e.target.value)) }} />
-                <input placeholder='Imagen' value={imgInput} onChange={(e) => { setimgInput(e.target.value) }} />
+                <input
+                    placeholder="Nombre"
+                    value={nameInput}
+                    id="name"
+                    onChange={(e) => {
+                        setnameInput(e.target.value);
+                    }}
+                />
+                <input
+                    placeholder="Número"
+                    value={valueInput}
+                    type="number"
+                    onChange={(e) => {
+                        setvalueInput(parseFloat(e.target.value));
+                    }}
+                />
+                <input
+                    placeholder="Imagen"
+                    value={imgInput}
+                    onChange={(e) => {
+                        setimgInput(e.target.value);
+                    }}
+                />
 
                 <MiButton
-                    rightIcon={modoEdicion ? '✏️' : '✅'}
-                    variant={modoEdicion ? 'secondary' : 'primary'}
-                    size='lg'
-                    textButton={modoEdicion ? 'Actualizar' : 'Crear'}
-                    click={handleSave} />
+                    rightIcon={modoEdicion ? "✏️" : "✅"}
+                    variant={modoEdicion ? "secondary" : "primary"}
+                    size="lg"
+                    textButton={modoEdicion ? "Actualizar" : "Crear"}
+                    click={handleSave}
+                />
             </div>
 
             {dataProperties.ok && (
-                <div className='contenedor'>
+                <div className="contenedor">
                     {dataProperties.data.map((property) => (
                         <div key={property._id}>
                             <MyCard
                                 titleCard={property.name}
-                                type='green'
+                                type="green"
                                 label={`${property.value}`} // de esta forma convierto el valor a un string ya que el label espera string y el value es number
                                 imageUrl={property.img}
-                                function1={() => { editarAlgo(property._id) }}
-                                function2={() => { eliminarAlgo(property._id) }}
-                                variant='primary'
-                                size='sm' />
-
+                                function1={() => {
+                                    editarAlgo(property._id);
+                                }}
+                                function2={() => {
+                                    eliminarAlgo(property._id);
+                                }}
+                                variant="primary"
+                                size="sm"
+                            />
                         </div>
                     ))}
                 </div>
             )}
-
+            <MiButton textButton="abirr modal" click={handleOpen} />
+            <Modal isOpen={modalIsOpen} title="Modal" onClose={handleClose} onConfirm={handleConfirm}>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+                asperiores labore cumque blanditiis cum, assumenda distinctio,
+                consequatur voluptas error culpa corporis odit eum, nihil et ipsum
+                delectus! Quod, ullam voluptates!
+            </Modal>
 
             <ToastContainer />
         </>
-    )
-}
-
+    );
+};
 
 export default InfoDashboard;
